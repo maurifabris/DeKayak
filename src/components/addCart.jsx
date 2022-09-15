@@ -9,12 +9,10 @@
 //         <>
 //      const [add, setAdd] = useState(0)
 
-//     const HandleAdd = () => {
-//     setAdd(add +1)
-//     [add, setAdd] = useState(0)
-
-//     func HandleAdd = () => {
-//     setAdd(add +1)
+// const HandleAdd = () => {
+//     setAdd(add +1)}
+//     const HandleRemove = () => {
+//       setAdd(add -1)}
 
 // }
 //         </>
