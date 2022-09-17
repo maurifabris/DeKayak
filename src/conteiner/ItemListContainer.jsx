@@ -1,5 +1,5 @@
 import React from 'react';
-import Kayak from '../components/Kayak';
+import Kayak from '../components/ItemDetail';
 import { useEffect, useState } from 'react';
 import customFetch from '../utils/CustomFetch';
 import dataFromDB from '../utils/data'
