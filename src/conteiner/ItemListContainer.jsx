@@ -23,11 +23,11 @@ const ItemListContainer = () => {
         <div>
             {
                 data.map(Item => (
-                    <Kayak
-                        key={Item.name}
-                        name={Item.name}
-                        description={Item.description}
-                        picture={Item.description}
+                    <ItemListContainer
+                        key={data.name}
+                        name={data.name}
+                        description={data.description}
+                        picture={data.description}
                     />))
             }
         </div>

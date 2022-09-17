@@ -18,7 +18,11 @@ const ItemDetailConteiner = () => {
 
     return (
         <div>
-            <ItemDetail item={data}/>
+            <ItemDetail key={data.name}
+             name={data.name}
+             description={data.description} 
+             picture={data.picture} 
+             stock={data.stock}/>
         </div>
     );
 }

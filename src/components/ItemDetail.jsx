@@ -10,7 +10,7 @@ const ItemDetail = ({ picture, name, description, stock }) => {
   const [add, setAdd] = useState(0)
 
   let HandleAdd = () => {
-    if (add > 1) {
+    if (stock >= add) {
       setAdd(add + 1)
     }
   }
@@ -18,12 +18,10 @@ const ItemDetail = ({ picture, name, description, stock }) => {
 
 
   let HandleRemove = () => {
-    if (stock < add) {
-      setAdd(add + 1)
+    if (add > 1) {
+      setAdd(add - 1)
     }
   }
-
-
   return (
     <div className="video-container">
       <div className="video-image">
