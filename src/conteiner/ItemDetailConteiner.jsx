@@ -2,7 +2,7 @@ import ItemDetail from "../components/ItemDetail";
 import { useEffect, useState } from "react";
 import customFetch from "../utils/CustomFetch";
 
-const {data, default: dataFromDB} = require('../utils/data')
+const {default: dataFromDB} = require('../utils/data')
 
 
 const ItemDetailConteiner = () => {
@@ -21,7 +21,7 @@ const ItemDetailConteiner = () => {
             <ItemDetail key={data.name}
              name={data.name}
              description={data.description} 
-             picture={data.picture} 
+             picture={data.picture}
              stock={data.stock}/>
         </div>
     );

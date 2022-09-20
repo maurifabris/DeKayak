@@ -23,11 +23,11 @@ const ItemDetail = ({ picture, name, description, stock }) => {
     }
   }
   return (
-    <div className="video-container">
-      <div className="video-image">
+    <div className="picture-container">
+      <div className="picture">
         <img src={picture} alt="Same alt value" />
       </div>
-      <div className="video-info">
+      <div className="picture-info">
         <h3>{name}</h3>
         <p>Descripcion: {description}</p>
         <ButtonGroup variant="contained" aria-label="outlined primary button group">
