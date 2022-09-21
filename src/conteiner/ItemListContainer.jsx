@@ -4,7 +4,8 @@ import { useEffect, useState } from 'react';
 import customFetch from '../utils/CustomFetch';
 import dataFromDB from '../utils/data'
 import { useParams } from 'react-router-dom';
-    import { useParams } from 'react-router-dom';
+import ItemDetail from '../components/ItemDetail';
+
 
 
 const ItemListContainer = () => {
@@ -19,7 +20,7 @@ const ItemListContainer = () => {
             .catch(err => console.log(err))
         
     } else {
-            customFetch(2000, dataFromDB)
+            customFetch(500, dataFromDB)
             .then(result => setData(result))
             .catch(err => console.log(err))
         
@@ -30,7 +31,7 @@ const ItemListContainer = () => {
         <div>
             {
                 data.map(Item => (
-                    <ItemListContainer
+                    <ItemDetail
                         key={data.name}
                         name={data.name}
                         description={data.description}
