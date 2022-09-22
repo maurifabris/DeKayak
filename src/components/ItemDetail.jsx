@@ -20,6 +20,7 @@ const ItemDetail = ({ picture, name, description, stock }) => {
   let HandleRemove = () => {
     if (add > 1) {
       setAdd(add - 1)
+      
     }
   }
   return (

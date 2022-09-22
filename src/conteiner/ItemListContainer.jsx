@@ -1,5 +1,4 @@
 import React from 'react';
-import Kayak from '../components/ItemDetail';
 import { useEffect, useState } from 'react';
 import customFetch from '../utils/CustomFetch';
 import dataFromDB from '../utils/data'
@@ -11,11 +10,11 @@ import ItemDetail from '../components/ItemDetail';
 const ItemListContainer = () => {
 
     const [data, setData] = useState([])
-    const {id} = useParams()
+    const { id } = useParams()
 
     useEffect(() => {
         if(id){
-            customFetch(2000, dataFromDB.filter(data.idCategory == id))
+            customFetch(2000, dataFromDB.filter(dataFromDB => dataFromDB.idCategory == id))
             .then(result => setData(result))
             .catch(err => console.log(err))
         
@@ -26,16 +25,16 @@ const ItemListContainer = () => {
         
     }}, [id]);
 
-
     return (
         <div>
             {
                 data.map(Item => (
                     <ItemDetail
-                        key={data.name}
-                        name={data.name}
-                        description={data.description}
-                        picture={data.description}
+                        key={Item.name}
+                        name={Item.name}
+                        description={Item.description}
+                        picture={Item.description}
+                        stock={Item.stock}
                     />))
             }
         </div>
