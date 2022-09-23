@@ -2,12 +2,19 @@ import React from 'react';
 import ButtonGroup from '@mui/material/ButtonGroup'
 import Button from '@mui/material/Button';
 import { useState } from 'react';
+import { Link } from "react-router-dom"
 
-
-
+let seAgregoAlcarrito = 0 
 const ItemDetail = ({ picture, name, description, stock }) => {
 
+
   const [add, setAdd] = useState(0)
+
+  //se que esta mal pero no se me ocurre como hacerlo, tengo que leer, pense en suar add == useState pero no entienod como funciona
+ 
+  let addToCart = () => {
+    seAgregoAlcarrito ++ 
+  }
 
   let HandleAdd = () => {
     if (stock >= add) {
@@ -20,7 +27,6 @@ const ItemDetail = ({ picture, name, description, stock }) => {
   let HandleRemove = () => {
     if (add > 1) {
       setAdd(add - 1)
-      
     }
   }
   return (
@@ -31,11 +37,18 @@ const ItemDetail = ({ picture, name, description, stock }) => {
       <div className="picture-info">
         <h3>{name}</h3>
         <p>Descripcion: {description}</p>
-        <ButtonGroup variant="contained" aria-label="outlined primary button group">
-          <Button onClick={HandleAdd}>+</Button>
-          <Button onClick={HandleRemove}>-</Button>
-          <Button>Agregar {add} al carrito</Button>
-        </ButtonGroup>
+
+        {
+          seAgregoAlcarrito > 1 ?
+          <ButtonGroup variant="contained" aria-label="outlined primary button group">
+            <Button onClick={HandleAdd}>+</Button>
+            <Button onClick={HandleRemove}>-</Button>
+            <Button on Clieck={addToCart}>Agregar {add} al carrito</Button>
+          </ButtonGroup> :
+        <Link to="/Cart"><Button>Agregado</Button></Link>
+        }
+
+
       </div>
     </div>
   );
