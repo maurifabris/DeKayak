@@ -16,10 +16,10 @@ const ItemDetailConteiner = () => {
      }, []);
     
 
-
     return (
         <div>
-            <ItemDetail key={data.name}
+            <ItemDetail
+            key={data.name}
              name={data.name}
              description={data.description} 
              picture={data.picture}

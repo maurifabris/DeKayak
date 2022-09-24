@@ -1,7 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import customFetch from '../utils/CustomFetch';
-import dataFromDB from '../utils/data'
+import dataFromDB from '../utils/data';
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../components/ItemDetail';
 
@@ -10,11 +10,11 @@ import ItemDetail from '../components/ItemDetail';
 const ItemListContainer = () => {
 
     const [data, setData] = useState([])
-    const { id } = useParams()
+    const { idCategory } = useParams()
 
     useEffect(() => {
-        if(id){
-            customFetch(2000, dataFromDB.filter(dataFromDB => dataFromDB.idCategory == id))
+        if(idCategory){
+            customFetch(2000, dataFromDB.filter(dataFromDB => dataFromDB.idCategory == idCategory))
             .then(result => setData(result))
             .catch(err => console.log(err))
         
@@ -23,18 +23,20 @@ const ItemListContainer = () => {
             .then(result => setData(result))
             .catch(err => console.log(err))
         
-    }}, [id]);
+    }}, [idCategory]);
+
+
 
     return (
         <div>
             {
-                data.map(Item => (
+                data.map(item => (
                     <ItemDetail
-                        key={Item.name}
-                        name={Item.name}
-                        description={Item.description}
-                        picture={Item.description}
-                        stock={Item.stock}
+                        key={item.name}
+                        name={item.name}
+                        description={item.description}
+                        picture={item.description}
+                        stock={item.stock}
                     />))
             }
         </div>

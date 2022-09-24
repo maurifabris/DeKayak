@@ -25,12 +25,14 @@ const Navbar = () => {
                                 </Link>
                             </li>
                             <li className="nav-item">
-                                <Link to="/category/:id">
+                                <Link to="/category/1">
                                     <p className="nav-link">Kayaks</p>
                                 </Link>
                             </li>
                             <li className="nav-item">
+                            <Link to="/category/2">
                                 <p className="nav-link" href="#">Accesorios</p>
+                                </Link>
                             </li>
                             <li className="nav-item">
                                 <p className="nav-link" href="#">Nosotros</p>
@@ -38,14 +40,10 @@ const Navbar = () => {
                             {/* Nota: puedo agregar una api de clima y agregar una seccion mas */}
 
                         </ul>
-                        <form className="d-flex">
-                            <input className="form-control me-sm-2" type="text" placeholder="Search" />
-                            <button className="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-                        </form>
                     </div>
                 </div>
                 <div>
-                    <CartWidget />
+                    <Link to="/Cart"><CartWidget/></Link>
                 </div>
             </nav>
         </>
