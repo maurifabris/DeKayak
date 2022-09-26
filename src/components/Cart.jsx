@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { CartContextProvaider } from './CartContext';
+import { CartContext } from './CartContext';
 
 const Cart = () => {
+
+    const {cartList} = useContext(CartContext);
+
+
+
     return (
-        <div>
+        <>
             <h1>i am cart</h1>
-        </div>
+            {
+                cartList.map(item => <li>{item}</li>)
+            }
+        </>
     );
 }
 
