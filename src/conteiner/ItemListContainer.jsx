@@ -35,7 +35,7 @@ const ItemListContainer = () => {
                         key={item.name}
                         name={item.name}
                         description={item.description}
-                        picture={item.description}
+                        picture={item.picture}
                         stock={item.stock}
                     />))
             }

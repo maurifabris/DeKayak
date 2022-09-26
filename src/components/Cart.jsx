@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { CartContextProvaider } from './CartContext';
+
 import { CartContext } from './CartContext';
 
 const Cart = () => {
@@ -12,7 +12,7 @@ const Cart = () => {
         <>
             <h1>i am cart</h1>
             {
-                cartList.map(item => <li>{item}</li>)
+                cartList.map(item => <div key={item.id}><li>{item.name}</li></div>)
             }
         </>
     );
