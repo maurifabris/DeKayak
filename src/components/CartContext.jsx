@@ -12,15 +12,15 @@ const CartContextProvaider = ({ children }) => {
     const [cartList, setCartList] = useState([]);
 
 
-    const addItem = (product, add) => {
+    const addItem = (product, count) => {
         if (isInCart(product.id)) {
             const indexItem = cartList.findIndex(ele => ele.item.id == product.id);
-            cartList[indexItem].add = cartList[indexItem].add + add;
+            cartList[indexItem].count = cartList[indexItem].count + count;
             setCartList([...cartList]);
         } else {
             const newProduct = {
-                item: product,
-                add
+                ...product,
+                count: count
             }
             setCartList([...cartList, newProduct])
         }
@@ -37,28 +37,30 @@ const CartContextProvaider = ({ children }) => {
 
 
 
-    const deleteItem = (id) => {
-        const updatedCart = cartList.filter(element => element.item.id !== id)
-        setCartList(updatedCart);
-    }
+    // const deleteItem = (id) => {
+    //     const updatedCart = cartList.filter(element => element.item.id !== id)
+    //     setCartList(updatedCart);}
+    
 
-    const totalProductsQty = () => {
-        return cartList.reduce((qty, itemCart) => qty + itemCart.count, 0)
-    }
+    // const totalProductsQty = () => {
+    //     return cartList.reduce((qty, itemCart) => qty + itemCart.count, 0)
+    // }
 
     const totalProductsPrice = () => {
         return cartList.reduce((qty, itemCart) => qty + (itemCart.item.price * itemCart.count), 0)
     }
+
     const value = {
         cartList,
         addItem,
         clear,
         isInCart,
-        totalProductsQty,
+        
         totalProductsPrice,
-        deleteItem,
+        
 
     }
+
     return (
 
         <CartContext.Provider value={value}>
@@ -66,6 +68,6 @@ const CartContextProvaider = ({ children }) => {
         </CartContext.Provider>
 
     );
-}
+    }
 
 export default CartContextProvaider;
