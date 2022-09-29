@@ -19,7 +19,7 @@ const ItemListContainer = () => {
             .catch(err => console.log(err))
         
     } else {
-            customFetch(500, dataFromDB)
+            customFetch(50, dataFromDB)
             .then(result => setData(result))
             .catch(err => console.log(err))
         
