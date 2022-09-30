@@ -14,7 +14,7 @@ const CartContextProvaider = ({ children }) => {
 
     const addItem = (product, count) => {
         if (isInCart(product.id)) {
-            const indexItem = cartList.findIndex(ele => ele.item.id == product.id);
+            const indexItem = cartList.findIndex(() => product.id == product.id);
             cartList[indexItem].count = cartList[indexItem].count + count;
             setCartList([...cartList]);
         } else {
@@ -32,7 +32,7 @@ const CartContextProvaider = ({ children }) => {
 
 
     const isInCart = (id) => {
-        return cartList.some(element => element.id === id)
+        return cartList.some((data) => data.id === id)
     }
 
 

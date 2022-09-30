@@ -5,29 +5,30 @@ import { useState } from 'react';
 import { Link } from "react-router-dom"
 import { CartContext } from './CartContext';
 import { useContext } from 'react';
-
+import dataFromDB from '../utils/data';
 
 const ItemDetail = (data) => {
 
-const { addItem,  isInCart,  deleteItem } = useContext(CartContext)
+  const { addItem, deleteItem } = useContext(CartContext)
 
   const [add, setAdd] = useState(0)
 
 
-  let HandleAdd = (product) => {
+  let HandleAdd = (data, add) => {
     if (data.stock >= add) {
+      console.log(`agregaste , cantidad = ${add}`)
       setAdd(add + 1)
-      addItem(product, add)
+      onAdd(data, add)
     }
   }
 
 
-  const onAdd = (add) => {
-    console.log(`agregaste , cantidad = ${add}`)
+  const onAdd = (data, add) => {
+    addItem(data, add)
     setAdded(true);
-}
+  }
 
-const [added, setAdded] = useState(false)
+  const [added, setAdded] = useState(false)
 
   let HandleRemove = () => {
     if (add >= 1) {
@@ -36,7 +37,7 @@ const [added, setAdded] = useState(false)
   }
 
 
-  
+
   return (
     <div className="picture-container">
       <div className="picture">
@@ -46,14 +47,14 @@ const [added, setAdded] = useState(false)
         <h3>{data.name}</h3>
         <p>Descripcion: {data.description}</p>
 
-      
-          
-         {added ? <Link to="/cart">Ir al carrito</Link> : <ButtonGroup variant="contained" aria-label="outlined primary button group">
-            <Button onClick={HandleAdd}>+</Button>
-            <Button onClick={HandleRemove}>-</Button>
-            <Button onClick={() => onAdd(add)}>Agregar {add} al carrito</Button>
-          </ButtonGroup>
-}
+
+
+        {added ? <Link to="/cart">Ir al carrito</Link> : <ButtonGroup variant="contained" aria-label="outlined primary button group">
+          <Button onClick={() => HandleAdd(data)}>+</Button>
+          <Button onClick={HandleRemove}>-</Button>
+          <Button onClick={() => onAdd(add)}>Agregar {add} al carrito</Button>
+        </ButtonGroup>
+        }
 
 
 

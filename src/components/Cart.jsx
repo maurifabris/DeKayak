@@ -20,9 +20,9 @@ const Cart = () => {
           </div>
           :
           <div className='CartContainer'>
-            {cartList.map(element => <CartItem key={element.item.id} prod={element} />)}
+            {cartList.map(element => <CartItem key={element.id} prod={element} />)}
             <button className='button' onClick={() => clear()}>Clear Cart</button>
-            <b>Total: ${totalProductsQty()}</b>
+            {/* <b>Total: ${totalProductsQty()}</b> */}
           </div>
         }
       </>

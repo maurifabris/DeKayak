@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
 import { CartContext } from './CartContext';
+ 
 
-const CartItem = ({ element }) => {
+const CartItem = () => {
 
-  const { deleteItem } = useContext(CartContext);
+  const { deleteItem, cartList} = useContext(CartContext);
 
   return (
       <div className='CartItem'>
-        {/* <h3>{element.name}</h3>
-        <p>quantity: {element.count}</p> 
-        <p>subTotal: {element.count * element.price}</p>
-        <button className='button' onClick={() => deleteItem(element.id)}>Delete</button> */}
-        askda
+        sadadas
+        <h3>{cartList.name}</h3>
+        {/* <p>quantity: {data.count}</p> 
+        <p>subTotal: {data.count * data.price}</p> */}
+        {/* <button className='button' onClick={() => deleteItem(data.id)}>Delete</button>  */}
+       
       </div>
   )
 };
