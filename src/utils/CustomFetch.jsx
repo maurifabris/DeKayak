@@ -1,13 +1,13 @@
 let ok = true
 
-let customFetch = (time, array) => {
-    return new Promise((resolve, reject)=>{
-        setTimeout(() => {
-            if(ok){
-                resolve(array)} else {
-                    reject("error")
-                }
-        }, time);
+let customFetch = (array) => {
+    return new Promise((resolve, reject) => {
+        if (ok) {
+            resolve(array)
+        } else {
+            reject("error")
+
+        }
     }
     )
 }

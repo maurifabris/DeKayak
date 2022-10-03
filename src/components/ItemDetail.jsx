@@ -8,27 +8,24 @@ import { useContext } from 'react';
 import dataFromDB from '../utils/data';
 
 const ItemDetail = (data) => {
-
-  const { addItem, deleteItem } = useContext(CartContext)
+  const { addItem } = useContext(CartContext)
 
   const [add, setAdd] = useState(0)
+  const [added, setAdded] = useState(false)
 
-
-  let HandleAdd = (data, add) => {
+  let HandleAdd = () => {
     if (data.stock >= add) {
-      console.log(`agregaste , cantidad = ${add}`)
       setAdd(add + 1)
-      onAdd(data, add)
     }
   }
 
 
-  const onAdd = (data, add) => {
+  const onAdd = () => {
     addItem(data, add)
     setAdded(true);
   }
 
-  const [added, setAdded] = useState(false)
+ 
 
   let HandleRemove = () => {
     if (add >= 1) {

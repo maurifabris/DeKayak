@@ -6,11 +6,11 @@ import dataFromDB from "../utils/data"
 
 
 
-const ItemDetailConteiner = () => {
+const ItemDetailConteiner = ()  => {
     const [data, setData] = useState({});
 
     useEffect(() => {
-        customFetch(2000,dataFromDB[data])
+        customFetch(2000,dataFromDB[2])
         .then(result => setData(result))
         .catch(err => console.log(err))
      }, []);
@@ -20,6 +20,7 @@ const ItemDetailConteiner = () => {
         <div>
             <ItemDetail
              key={data.id}
+             id={data.id}
              name={data.name}
              description={data.description} 
              picture={data.picture}

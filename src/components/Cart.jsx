@@ -8,7 +8,7 @@ const Cart = () => {
 
     const { cartList, clear, totalProductsQty} = useContext(CartContext);
 
-
+    console.log(cartList)
 
     return (
       
