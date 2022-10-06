@@ -1,41 +1,40 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import customFetch from '../utils/CustomFetch';
-import dataFromDB from '../utils/data';
+
 import { useParams } from 'react-router-dom';
 import ItemDetail from '../components/ItemDetail';
 import CircularColor from '../components/CircularProgressSizes';
-
-
+import { collection, getDocs, query } from "firebase/firestore";
+import { db } from "../utils/firebaseConfig"
 
 const ItemListContainer = () => {
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
-    const { idCategory } = useParams()
+    const { item } = useParams()
 
     useEffect(() => {
-        setTimeout(() => {
-            if (idCategory) {
-                customFetch(dataFromDB.filter(dataFromDB => dataFromDB.idCategory == idCategory))
-                    .then(result => {
-                        setLoading(false)
-                        setData(result)
-                    }
-                    )
-                    .catch(err => console.log(err))
+        const firestoreFetch = async () => {
+            const q = query(collection(db, "/productos "))
+            const querySnapshot = await getDocs(q);
+            const dataFromFirestore = querySnapshot.docs.map(document => ({
+                id: document.id,
+                ...document.data()
+            }))
+            return dataFromFirestore
+        }
+        console.log(data)
+        firestoreFetch()
+            .then(result => setData(result))
 
-            } else {
-                customFetch(dataFromDB)
-                    .then(result => {
-                        setLoading(false)
-                        setData(result)
-                    }
-                    )
-                    .catch(err => console.log(err))
 
-            }
-        }, 1000)
-    }, [idCategory]);
+
+            
+            .then(() => setLoading(false))
+
+    }, [item]);
+
+
+
 
 
 
@@ -44,11 +43,11 @@ const ItemListContainer = () => {
             {
                 loading ?
                     <>
-                    <CircularColor/>
-                    <p>ASAS</p>
-                   </>
+                        <CircularColor />
+                        <p>ASAS</p>
+                    </>
                     :
-                    data.map(item => (
+                    data.map((item) => (
                         <ItemDetail
                             key={item.name}
                             id={item.id}
