@@ -1,20 +1,26 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-
-import { useParams } from 'react-router-dom';
+import { useParams, link } from 'react-router-dom';
 import ItemDetail from '../components/ItemDetail';
 import CircularColor from '../components/CircularProgressSizes';
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
 import { db } from "../utils/firebaseConfig"
+
+
 
 const ItemListContainer = () => {
     const [loading, setLoading] = useState(true)
     const [data, setData] = useState([])
-    const { item } = useParams()
+    const { idCategory } = useParams()
 
     useEffect(() => {
         const firestoreFetch = async () => {
-            const q = query(collection(db, "/productos "))
+            let q
+            if(idCategory) { 
+             q = query(collection(db, "/productos "), where("idCategory", "==", parseInt(idCategory)))
+            } else {
+                q = query(collection(db, "/productos "))
+            }
             const querySnapshot = await getDocs(q);
             const dataFromFirestore = querySnapshot.docs.map(document => ({
                 id: document.id,
@@ -25,13 +31,9 @@ const ItemListContainer = () => {
         console.log(data)
         firestoreFetch()
             .then(result => setData(result))
-
-
-
-            
             .then(() => setLoading(false))
 
-    }, [item]);
+    }, [idCategory]);
 
 
 
@@ -44,7 +46,7 @@ const ItemListContainer = () => {
                 loading ?
                     <>
                         <CircularColor />
-                        <p>ASAS</p>
+                        
                     </>
                     :
                     data.map((item) => (
@@ -55,11 +57,12 @@ const ItemListContainer = () => {
                             description={item.description}
                             picture={item.picture}
                             stock={item.stock}
-                            price={item.price}
+                            price={item.price} 
                         />))
+                        
             }
         </>
     );
-}
 
+        }
 export default ItemListContainer;

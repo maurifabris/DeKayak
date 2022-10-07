@@ -43,7 +43,7 @@ const ItemDetail = (data) => {
       <div className="picture-info">
         <h3>{data.name}</h3>
         <p>Descripcion: {data.description}</p>
-
+        <Link to={"/item/" + data.id}><button>Detalles</button></Link>
 
 
         {added ? <Link to="/cart">Ir al carrito</Link> : <ButtonGroup variant="contained" aria-label="outlined primary button group">
