@@ -28,6 +28,8 @@ const ItemListContainer = () => {
             }))
             return dataFromFirestore
         }
+
+
         console.log(data)
         firestoreFetch()
             .then(result => setData(result))

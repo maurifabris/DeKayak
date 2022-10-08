@@ -8,26 +8,37 @@ import { collection, doc, getDoc, query, where } from "firebase/firestore";
 
 const ItemDetailConteiner = () => {
 
-    const { id } = useParams();
-    const [loading, setLoading] = useState(true);
-    const [data, setData] = useState([]);
+    const [loading, setLoading] = useState(true)
+    const [data, setData] = useState({})
+    const { id } = useParams()
 
 
-    useEffect(() => {
+     useEffect(() => {
+
+        const getProducto = async() =>  {
+
+            const  dataproduct = await getDoc(doc(db, "productos", id))
+            console.log(dataproduct)
+            return {
+                id: id,
+                ...dataproduct.data(),
+                
+            }
+        }
+
+
         setLoading(true)
-        const docRef = doc(db, "productos", id);
-        getDoc(docRef)
-            .then(result => setData({
-                id: result.id,
-                ...result.data()
-            }))
+        getProducto()
+            .then(result => setData(result))
             .finally(() => setLoading(false))
     }, [id])
 
 
 
+
     return (
         <>
+           { console.log(data)}
             {
                 loading ?
                     <>
@@ -35,7 +46,7 @@ const ItemDetailConteiner = () => {
 
                     </>
                     :
-
+                
                     <ItemDetail data={data}
                     />
 
