@@ -1,11 +1,12 @@
 import ItemDetail from "../components/ItemDetail";
 import { useEffect, useState } from "react";
-import { collection, getDocs, query, where } from "firebase/firestore";
+
 import { db } from "../utils/firebaseConfig"
 import { useParams } from "react-router-dom";
+import CircularColor from '../components/CircularProgressSizes';
+import { collection, doc, getDoc, query, where } from "firebase/firestore";
 
-
-const ItemDetailConteiner = ()  => {
+const ItemDetailConteiner = () => {
 
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
@@ -13,37 +14,33 @@ const ItemDetailConteiner = ()  => {
 
 
     useEffect(() => {
-        const firestoreFetch = async () => {
-            // let q
-            // if(id) { 
-            //  q = query(collection(db, "/productos" + id), where("id", "==", parseInt(id)))
-            // } else {
-            //     q = query(collection(db, "/productos "))
-            // }
-            const querySnapshot = await getDocs(query(collection(db, "/productos "), where("id", "==", id ))); 
-            const dataFromFirestore = querySnapshot.docs.map(document => ({
-                id: document.id,
-                ...document.data()
+        setLoading(true)
+        const docRef = doc(db, "productos", id);
+        getDoc(docRef)
+            .then(result => setData({
+                id: result.id,
+                ...result.data()
             }))
-            return dataFromFirestore
-        }
-        console.log(data)
-        firestoreFetch()
-            .then(result => setData(result))
-            .then(() => setLoading(false))
+            .finally(() => setLoading(false))
+    }, [id])
 
-    }, [id]);
+
 
     return (
-        <div>
-            <ItemDetail
-             key={data.id}
-             id={data.id}
-             name={data.name}
-             description={data.description} 
-             picture={data.picture}
-             stock={data.stock}/>
-        </div>
+        <>
+            {
+                loading ?
+                    <>
+                        <CircularColor />
+
+                    </>
+                    :
+
+                    <ItemDetail data={data}
+                    />
+
+            }
+        </>
     );
 }
 
