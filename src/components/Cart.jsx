@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import CartItem from './CartItem';
 import { serverTimestamp, doc, setDoc, collection, updateDoc, increment } from 'firebase/firestore';
 import { db } from "../utils/firebaseConfig"
-import { async } from '@firebase/util';
+
 
 const Cart = () => {
 
@@ -22,13 +22,11 @@ const Cart = () => {
         items: cartList,
         total: totalProductsPrice()
         }
-        console.log(order)
-
           const newOrderRef = doc(collection(db, "orders"))
           await setDoc(newOrderRef, order);
           
           cartList.forEach(async (item) => {
-            const itemRef = doc(db, "/productos ", item.id )
+            const itemRef = doc(db, "productos", item.id )
             await updateDoc(itemRef, {
               stock: increment( - item.count)
             }) 
