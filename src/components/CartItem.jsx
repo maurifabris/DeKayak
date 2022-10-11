@@ -5,7 +5,7 @@ import { CartContext } from './CartContext';
 const CartItem = ( { prod }) => {
 
   const { deleteItem } = useContext(CartContext);
-
+//render of an items in the cart
   return (
       <div className='CartItem'>
         

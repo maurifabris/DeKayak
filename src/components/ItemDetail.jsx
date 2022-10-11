@@ -33,7 +33,7 @@ const ItemDetail = (data) => {
   }
 
 
-
+// render of itemDetail and his buttons to add cart and details
   return (
     <div className="picture-container">
       <div className="picture">

@@ -11,6 +11,7 @@ const Cart = () => {
 
     const { cartList, clear, totalProductsPrice} = useContext(CartContext);
 
+      // function for create an "hardcodeated" client
     const crateOrder = async() => {
       let order = {
         buyer: {
@@ -22,9 +23,10 @@ const Cart = () => {
         items: cartList,
         total: totalProductsPrice()
         }
+        //this saves the order in database
           const newOrderRef = doc(collection(db, "orders"))
           await setDoc(newOrderRef, order);
-          
+          //this decrease stock when a order list is created
           cartList.forEach(async (item) => {
             const itemRef = doc(db, "productos", item.id )
             await updateDoc(itemRef, {
@@ -43,13 +45,16 @@ const Cart = () => {
     return (
       
         <>
+        {/* render of an empty cart*/ }
         {cartList.length === 0 ?
           <div>
             <p>Empty Cart</p>
             <Link to='/'>Go to shop!</Link>
           </div>
           :
+          
           <div className='CartContainer'>
+             {/* render of an cartlist*/ }
             {cartList.map(element => <CartItem key={element.id} prod={element} />)}
             <Button variant="outlined" color="error"  onClick={() => clear()}>
             Clear Cart

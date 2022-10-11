@@ -13,6 +13,9 @@
   
 
 }
+body{
+  min-height: 100%;
+}
 
 img{
   height: 275px;
@@ -21,4 +24,16 @@ img{
 
 .picture-container{
   margin: 5%;
+}
+
+.icon{
+  height: 50px;
+  width:50px;
+  margin-left: 25%;
+}
+footer{
+  background-color: #325d88;
+  color: black;
+
+  bottom: 0;
 }

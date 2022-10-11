@@ -16,7 +16,7 @@ const ItemDetailConteiner = () => {
      useEffect(() => {
 
         const getProducto = async() =>  {
-
+            // fetch for a product
             const  dataproduct = await getDoc(doc(db, "productos", id))
             return {
                 id: dataproduct.id,
@@ -25,7 +25,7 @@ const ItemDetailConteiner = () => {
             }
         }
 
-
+        // useState to remove the spinner when the data is ready 
         setLoading(true)
         getProducto()
             .then(result => setData(result))
@@ -34,7 +34,7 @@ const ItemDetailConteiner = () => {
 
 
 
-
+// render of the details of ech item
     return (
         <>
             {

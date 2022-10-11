@@ -3,7 +3,7 @@ import React from "react";
 import { Link } from "react-router-dom"
 
 
-
+// Navbar and links to ech sections
 const Navbar = () => {
     return (
         <>
@@ -34,8 +34,11 @@ const Navbar = () => {
                                 <p className="nav-link" href="#">Accesorios</p>
                                 </Link>
                             </li>
+
                             <li className="nav-item">
-                                <p className="nav-link" href="#">Nosotros</p>
+                            <Link to="/category/3">
+                                <p className="nav-link" href="#">Chalecos</p>
+                                </Link>
                             </li>
                             {/* Nota: puedo agregar una api de clima y agregar una seccion mas */}
 
