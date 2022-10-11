@@ -17,10 +17,14 @@ const ItemDetailConteiner = () => {
 
         const getProducto = async() =>  {
 
-            const  dataproduct = await getDoc(doc(db, "productos", id))
-            console.log(dataproduct)
+            const  dataproduct = await getDoc(doc(db, "/productos ", id))
+            if(dataproduct.exists()){
+                console.log(":)")
+            } else {
+                console.log("No existe")
+            }
             return {
-                id: id,
+                id: dataproduct.id,
                 ...dataproduct.data(),
                 
             }
@@ -47,7 +51,14 @@ const ItemDetailConteiner = () => {
                     </>
                     :
                 
-                    <ItemDetail data={data}
+                    <ItemDetail 
+                    key={data.name}
+                    id={data.id}
+                    name={data.name}
+                    description={data.description}
+                    picture={data.picture}
+                    stock={data.stock}
+                    price={data.price} 
                     />
 
             }

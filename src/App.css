@@ -5,3 +5,20 @@
 .cart{
   margin-right: 10px;
 }
+
+.conteiner {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+
+}
+
+img{
+  height: 275px;
+  width: 320px;
+}
+
+.picture-container{
+  margin: 5%;
+}

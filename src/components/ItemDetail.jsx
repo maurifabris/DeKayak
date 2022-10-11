@@ -5,7 +5,6 @@ import { useState } from 'react';
 import { Link } from "react-router-dom"
 import { CartContext } from './CartContext';
 import { useContext } from 'react';
-import dataFromDB from '../utils/data';
 
 const ItemDetail = (data) => {
   const { addItem } = useContext(CartContext)
@@ -14,7 +13,7 @@ const ItemDetail = (data) => {
   const [added, setAdded] = useState(false)
 
   let HandleAdd = () => {
-    if (data.stock >= add) {
+    if (data.stock > add) {
       setAdd(add + 1)
     }
   }
@@ -38,7 +37,7 @@ const ItemDetail = (data) => {
   return (
     <div className="picture-container">
       <div className="picture">
-        <img src={data.picture} />
+        <img alt={data.alt} src={data.picture} />
       </div>
       <div className="picture-info">
         <h3>{data.name}</h3>

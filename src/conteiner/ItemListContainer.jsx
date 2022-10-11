@@ -29,8 +29,6 @@ const ItemListContainer = () => {
             return dataFromFirestore
         }
 
-
-        console.log(data)
         firestoreFetch()
             .then(result => setData(result))
             .then(() => setLoading(false))
@@ -43,7 +41,7 @@ const ItemListContainer = () => {
 
 
     return (
-        <>
+        <div className="conteiner"> 
             {
                 loading ?
                     <>
@@ -51,8 +49,10 @@ const ItemListContainer = () => {
                         
                     </>
                     :
+                    
+
                     data.map((item) => (
-                        <ItemDetail
+                        <ItemDetail 
                             key={item.name}
                             id={item.id}
                             name={item.name}
@@ -60,10 +60,12 @@ const ItemListContainer = () => {
                             picture={item.picture}
                             stock={item.stock}
                             price={item.price} 
+                            
                         />))
                         
+                        
             }
-        </>
+       </div>
     );
 
         }

@@ -1,14 +1,46 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from './CartContext';
-
+import Button from '@mui/material/Button';
 import CartItem from './CartItem';
+import { serverTimestamp, doc, setDoc, collection, updateDoc, increment } from 'firebase/firestore';
+import { db } from "../utils/firebaseConfig"
+import { async } from '@firebase/util';
 
 const Cart = () => {
 
-    const { cartList, clear, totalProductsQty} = useContext(CartContext);
+    const { cartList, clear, totalProductsPrice} = useContext(CartContext);
 
-    console.log(cartList)
+    const crateOrder = async() => {
+      let order = {
+        buyer: {
+          name: "Mauri",
+          email: "maurifabris91@gmail.com",
+          phone: 1152522525,
+        },
+        data: serverTimestamp(),
+        items: cartList,
+        total: totalProductsPrice()
+        }
+        console.log(order)
+
+          const newOrderRef = doc(collection(db, "orders"))
+          await setDoc(newOrderRef, order);
+          
+          cartList.forEach(async (item) => {
+            const itemRef = doc(db, "/productos ", item.id )
+            await updateDoc(itemRef, {
+              stock: increment( - item.count)
+            }) 
+          });
+
+
+
+          clear()
+          alert("Generaste una orden de compra, tu id de compra es" + newOrderRef.id)
+        }
+      
+    
 
     return (
       
@@ -21,8 +53,13 @@ const Cart = () => {
           :
           <div className='CartContainer'>
             {cartList.map(element => <CartItem key={element.id} prod={element} />)}
-            <button className='button' onClick={() => clear()}>Clear Cart</button>
-            {/* <b>Total: ${totalProductsQty()}</b> */}
+            <Button variant="outlined" color="error"  onClick={() => clear()}>
+            Clear Cart
+            </Button>
+            <Button variant="outlined" color="success" onClick={() => crateOrder()}>
+            Confirmar compra de: ${totalProductsPrice()} 
+      </Button>
+             
           </div>
         }
       </>
