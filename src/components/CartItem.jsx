@@ -10,10 +10,9 @@ const CartItem = ( { prod }) => {
       <div className='CartItem'>
         
         <h3>{prod.name}</h3>
-        <img src={prod.picture}/>
+        <img src={prod.picture} alt={prod.alt}/>
         <h3>{prod.description}</h3>
         <h3> costo por unidad:{prod.price}</h3>
-        <h3></h3>
         <p>quantity: {prod.count}</p> 
         <p>{prod.count * prod.price}</p>
         <button className='button' onClick={() => deleteItem(prod.id)}>Delete</button> 

@@ -13,7 +13,7 @@ const CartContextProvaider = ({ children }) => {
     //function for add items to cartList
     const addItem = (product, count) => {
         if (isInCart(product.id)) {
-            const indexItem = cartList.findIndex(() => product.id == product.id);
+            const indexItem = cartList.findIndex(() => product.id);
             cartList[indexItem].count = cartList[indexItem].count + count;
             setCartList([...cartList]);
         } else {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { useParams, link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import ItemDetail from '../components/ItemDetail';
 import CircularColor from '../components/CircularProgressSizes';
 import { collection, getDocs, query, where } from "firebase/firestore";
@@ -14,6 +14,7 @@ const ItemListContainer = () => {
     const { idCategory } = useParams()
 
     useEffect(() => {
+        // fetch for firestore, its set data of the all product who categoryid is ecual to the section 
         const firestoreFetch = async () => {
             let q
             if(idCategory) { 
@@ -49,8 +50,6 @@ const ItemListContainer = () => {
                         
                     </>
                     :
-                    
-
                     data.map((item) => (
                         <ItemDetail 
                             key={item.name}
@@ -60,7 +59,7 @@ const ItemListContainer = () => {
                             picture={item.picture}
                             stock={item.stock}
                             price={item.price} 
-                            
+                            alt={data.alt}
                         />))
                         
                         

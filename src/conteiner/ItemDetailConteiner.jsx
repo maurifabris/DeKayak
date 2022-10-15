@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { db } from "../utils/firebaseConfig"
 import { useParams } from "react-router-dom";
 import CircularColor from '../components/CircularProgressSizes';
-import { collection, doc, getDoc, query, where } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
 const ItemDetailConteiner = () => {
 
@@ -53,6 +53,7 @@ const ItemDetailConteiner = () => {
                     picture={data.picture}
                     stock={data.stock}
                     price={data.price} 
+                    alt={data.alt}
                     />
 
             }

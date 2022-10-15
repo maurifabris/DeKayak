@@ -13,8 +13,9 @@
   
 
 }
-body{
+html{
   min-height: 100%;
+  position:relative
 }
 
 img{
@@ -34,6 +35,7 @@ img{
 footer{
   background-color: #325d88;
   color: black;
-
+  position: absolute;
   bottom: 0;
+  width: 100%;
 }

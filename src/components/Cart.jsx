@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import CartItem from './CartItem';
 import { serverTimestamp, doc, setDoc, collection, updateDoc, increment } from 'firebase/firestore';
 import { db } from "../utils/firebaseConfig"
-
+import Swal from 'sweetalert2';
 
 const Cart = () => {
 
@@ -37,7 +37,7 @@ const Cart = () => {
 
 
           clear()
-          alert("Generaste una orden de compra, tu id de compra es" + newOrderRef.id)
+          Swal.fire(`Generaste una orden de compra, tu id de compra es:   ${newOrderRef.id}`)
         }
       
     
