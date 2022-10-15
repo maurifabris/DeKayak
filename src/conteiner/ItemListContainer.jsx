@@ -59,7 +59,7 @@ const ItemListContainer = () => {
                             picture={item.picture}
                             stock={item.stock}
                             price={item.price} 
-                            alt={data.alt}
+                            
                         />))
                         
                         

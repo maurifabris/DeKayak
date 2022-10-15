@@ -53,7 +53,7 @@ const ItemDetailConteiner = () => {
                     picture={data.picture}
                     stock={data.stock}
                     price={data.price} 
-                    alt={data.alt}
+                    
                     />
 
             }
